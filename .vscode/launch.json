@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Rails: Attach to debugger in running container",
+      "type": "Ruby",
+      "request": "attach",
+      "remoteHost": "127.0.0.1",
+      "remotePort": "1234",
+      "cwd": "${workspaceRoot}/src/blog",
+      "remoteWorkspaceRoot": "/srv/rails/blog"
+    }
+  ]
+}

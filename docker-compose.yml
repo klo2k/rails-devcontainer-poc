@@ -1,0 +1,33 @@
+# Spints up the application stack **LOCALLY**
+# - database
+# - app (with debug configs)
+services:
+  # Debug app
+  rails_debug:
+    image: mq/rails:debug
+    container_name: rails_debug
+    ports:
+      # HTTP
+      - 127.0.0.1:3000:3000
+      # Debug
+      - 127.0.0.1:1234:1234
+    volumes:
+      - ./src/blog:/srv/rails/blog
+    environment:
+      # Default to the same uid and gid as defined in "rails.dockerfile" if unset
+      - DEBUG_HOST_UID=${RAILS_DEBUG_UID:-10001}
+      - DEBUG_HOST_GID=${RAILS_DEBUG_GID:-10001}
+    networks:
+      - rails_net
+    # Limit log to 30MB
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# Create new network for database and other thigns to attach to
+networks:
+  rails_net:
+    name: rails_net
+    driver: bridge
