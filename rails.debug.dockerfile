@@ -32,7 +32,7 @@ RUN \
     apt clean
 
 # Install app dependencies
-COPY src/blog/Gemfile /root/Gemfile
+COPY src/blog/Gemfile src/blog/Gemfile.lock /root/
 RUN bundle install --gemfile=/root/Gemfile
 
 # Install quality-of-life debug tools
