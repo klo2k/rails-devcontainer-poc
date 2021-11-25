@@ -1,4 +1,4 @@
-FROM ruby:3.0-bullseye
+FROM ruby:3.0.2-bullseye
 
 LABEL org.opencontainers.image.revision="-"
 LABEL org.opencontainers.image.source="https://bitbucket.org/klo2k/rails-devcontainer/"
