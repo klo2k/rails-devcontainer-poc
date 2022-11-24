@@ -3,12 +3,10 @@
   "configurations": [
     {
       "name": "Rails: Attach to debugger in running container",
-      "type": "Ruby",
+      "type": "rdbg",
       "request": "attach",
-      "remoteHost": "127.0.0.1",
-      "remotePort": "1234",
-      "cwd": "${workspaceRoot}/src/blog",
-      "remoteWorkspaceRoot": "/srv/rails/blog"
+      "debugPort": "localhost:1234",
+      "localfsMap": "/site:${workspaceRoot}/blog"
     }
   ]
 }
