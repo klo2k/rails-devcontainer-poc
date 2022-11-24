@@ -15,7 +15,7 @@ services:
       # Debug
       - 127.0.0.1:1234:1234
     volumes:
-      - ./src/blog:/srv/rails/blog
+      - ./blog:/site
     networks:
       - rails_7_debug_net
     # Limit log to 30MB

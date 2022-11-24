@@ -29,12 +29,12 @@ USER rails
 ENV GEM_HOME=/home/rails/.gems
 # So we can create the app using this image - for a prod. app we'd only use Gemfile
 RUN gem install rails --version '7.0.4'
-# Add user gem-installed binaries to PATH
-ENV PATH="/home/rails/.gems/bin:${PATH}"
+# Add app's bin, user installed gem binaries to PATH
+ENV PATH="/site/bin:/home/rails/.gems/bin:${PATH}"
 
-# #Install app dependencies
-# COPY blog/Gemfile blog/Gemfile.lock /home/rails/
-# RUN bundle install --gemfile=/home/rails/Gemfile
+# Install app dependencies
+COPY blog/Gemfile blog/Gemfile.lock /home/rails/
+RUN bundle install --gemfile=/home/rails/Gemfile
 
 # Copy src into image
 #COPY --chown=rails:rails ./blog /site
@@ -84,7 +84,7 @@ ENV RAILS_ENV=development
 # Start debug server - HTTP:3000, Debug:1234
 CMD \
     # Startup rails in debug mode, under the "rails" account (same as normal app image)
-    /usr/local/bundle/bin/rdbg \
+    /home/rails/.gems/bin/rdbg \
         --nonstop \
         --open --host 0.0.0.0 --port 1234 \
         -- \

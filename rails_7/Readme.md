@@ -99,6 +99,8 @@ code --install-extension castwide.solargraph
 
 ```bash
 mkdir blog
+# Create dummy Gemfile so image builds
+touch blog/Gemfile blog/Gemfile.lock
 docker-compose build --pull \
   --build-arg "APP_UID=$(id --user)" \
   --build-arg "APP_GID=$(id --group)" \
