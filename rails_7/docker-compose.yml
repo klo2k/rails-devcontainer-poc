@@ -1,0 +1,32 @@
+# Spints up the application stack **LOCALLY**
+# - database
+# - app (with debug configs)
+services:
+  # Debug app
+  rails_7_debug:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: klo2k/rails_7:debug
+    container_name: rails_7_debug
+    ports:
+      # HTTP
+      - 127.0.0.1:3000:3000
+      # Debug
+      - 127.0.0.1:1234:1234
+    volumes:
+      - ./src/blog:/srv/rails/blog
+    networks:
+      - rails_7_debug_net
+    # Limit log to 30MB
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# Create new network for database and other thigns to attach to
+networks:
+  rails_7_debug_net:
+    name: rails_7_debug_net
+    driver: bridge
