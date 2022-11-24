@@ -98,10 +98,11 @@ code --install-extension castwide.solargraph
 ## Bootstrap
 
 ```bash
+mkdir blog
 docker-compose build --pull \
   --build-arg "APP_UID=$(id --user)" \
   --build-arg "APP_GID=$(id --group)" \
   rails_7_debug
-docker run --volume="$(pwd)/blog:/site" --rm -it klo2k/rails_7:debug bash
-rails new .
+docker run --volume="$(pwd)/blog:/site" --rm -it klo2k/rails_7:debug \
+  rails new blog
 ```
