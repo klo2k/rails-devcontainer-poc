@@ -83,11 +83,13 @@ ENV RAILS_ENV=development
 
 # Start debug server - HTTP:3000, Debug:1234
 CMD \
+    rm --force /tmp/server.pid && \
     # Startup rails in debug mode, under the "rails" account (same as normal app image)
-    /home/rails/.gems/bin/rdbg \
+    exec /home/rails/.gems/bin/rdbg \
         --nonstop \
         --open --host 0.0.0.0 --port 1234 \
         -- \
         /site/bin/rails server \
             --environment=${RAILS_ENV} \
+            --pid=/tmp/server.pid \
             --binding=0.0.0.0 --port=3000
