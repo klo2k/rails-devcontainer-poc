@@ -6,5 +6,5 @@ set -eux
 # Go to directory of this script
 cd "$(dirname $0)"
 
-# Stop debug app
-docker-compose stop rails_7_debug
+# Stop the app stack
+docker-compose stop
