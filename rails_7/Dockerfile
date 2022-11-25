@@ -33,7 +33,7 @@ RUN gem install rails --version '7.0.4'
 ENV PATH="/site/bin:/home/rails/.gems/bin:${PATH}"
 
 # Install app dependencies
-COPY blog/Gemfile blog/Gemfile.lock /home/rails/
+COPY --chown=rails:rails blog/Gemfile blog/Gemfile.lock /home/rails/
 RUN bundle install --gemfile=/home/rails/Gemfile
 
 # Copy src into image
